@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uji Deteksi Jendela Apung/Sidebar</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Uji Deteksi Jendela Apung/Sidebar</h1>
+    <p>Biarkan halaman ini terbuka dan coba buka jendela apung atau sidebar.</p>
+    <p>Jika Anda meninggalkan halaman, peringatan akan muncul setelah 5 detik.</p>
+</div>
+
+<script>
+    let isTabActive = true;
+    let timeout;
+
+    function handleVisibilityChange() {
+        if (document.hidden) {
+            isTabActive = false;
+            timeout = setTimeout(function() {
+                if (!isTabActive) {
+                    alert("Anda telah meninggalkan halaman ulangan. Silakan kembali!");
+                }
+            }, 5000);
+        } else {
+            isTabActive = true;
+            clearTimeout(timeout);
+        }
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange, false);
+</script>
+</body>
+</html>
